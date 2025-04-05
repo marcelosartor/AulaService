@@ -10,7 +10,9 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-
+/* ------------------------------------------
+Exemplo não utilizado
+ ------------------------------------------ */
 class MeuServico: Service() {
 
     private val coroutine = CoroutineScope(Dispatchers.IO)
