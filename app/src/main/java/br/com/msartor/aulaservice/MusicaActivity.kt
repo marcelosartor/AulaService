@@ -1,8 +1,10 @@
 package br.com.msartor.aulaservice
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.media.AudioManager
 import android.media.MediaPlayer
+import android.os.Build
 import android.os.Bundle
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
@@ -31,10 +33,18 @@ class MusicaActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        solicitarPermissaoNotificacao()
         inicializarMediaPlayer()
         inicializarControles()
     }
 
+    private fun solicitarPermissaoNotificacao() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // API 33+
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 1)
+            }
+        }
+    }
     private fun inicializarControles() {
         binding.btnTocar.setOnClickListener { play() }
         binding.btnPausar.setOnClickListener { pause() }
@@ -44,9 +54,16 @@ class MusicaActivity : AppCompatActivity() {
     }
 
     private fun executarServicoMusica() {
+
         val musicaService = Intent(this, MusicaService::class.java)
+
+
         binding.btnIniciarServicoMusica.setOnClickListener{
-            startService(musicaService)
+            //In Background
+            //startService(musicaService)
+
+            //In Foreground
+            startForegroundService(musicaService)
         }
         binding.btnPararServicoMusica.setOnClickListener{
             stopService(musicaService)

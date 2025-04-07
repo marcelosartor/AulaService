@@ -63,7 +63,7 @@ class MinhaConexao : Service() {
                 setContentTitle("Acompanhando a localização")
                 setContentText("Necessario para acompanhar seus passsos")
             }
-            .build()
+
 
         /*
         val notification = NotificationCompat.Builder(this, idCanal)
@@ -87,7 +87,7 @@ class MinhaConexao : Service() {
          */
 
         Log.i("MeuServico", "Antes do startForeground 34")
-        startForeground(1, notification)
+        startForeground(1, notification.build())
 
         coroutine.launch {
             repeat(10) { i ->
