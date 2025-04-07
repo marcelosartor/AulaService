@@ -1,7 +1,11 @@
 package br.com.msartor.aulaservice
 
+import android.content.Intent
+import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.widget.SeekBar
+import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +39,35 @@ class MusicaActivity : AppCompatActivity() {
         binding.btnTocar.setOnClickListener { play() }
         binding.btnPausar.setOnClickListener { pause() }
         binding.btnParar.setOnClickListener { stop() }
+        inicializarControleDeVolume()
+        executarServicoMusica()
+    }
+
+    private fun executarServicoMusica() {
+        val musicaService = Intent(this, MusicaService::class.java)
+        binding.btnIniciarServicoMusica.setOnClickListener{
+            startService(musicaService)
+        }
+        binding.btnPararServicoMusica.setOnClickListener{
+            stopService(musicaService)
+        }
+    }
+
+    private fun inicializarControleDeVolume() {
+        // Outra forma de pegar o AudioManager
+        //val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
+        val audioManager = getSystemService(AudioManager::class.java)
+
+        binding.seekVolume.max = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
+        binding.seekVolume.progress = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
+        binding.seekVolume.setOnSeekBarChangeListener(object : OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress,0)
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+
+        })
     }
 
     private fun releaseMediaPlayer(){

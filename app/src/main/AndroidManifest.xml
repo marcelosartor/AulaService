@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
@@ -15,7 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AulaService">
-
+        <service
+            android:name=".MusicaService"
+            android:enabled="true"
+            android:exported="false"></service>
         <service
             android:name=".MinhaConexao"
             android:description="@string/description_my_service"
@@ -30,7 +34,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".MusicaActivity"
             android:exported="true">
