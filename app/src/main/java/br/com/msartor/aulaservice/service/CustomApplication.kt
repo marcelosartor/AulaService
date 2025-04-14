@@ -1,7 +1,6 @@
-package br.com.msartor.aulaservice
+package br.com.msartor.aulaservice.service
 
 import android.app.Application
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 

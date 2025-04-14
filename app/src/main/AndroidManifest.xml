@@ -2,14 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
-
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:name=".CustomApplication"
+        android:name=".service.CustomApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -18,26 +18,46 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AulaService">
-        <service
-            android:name=".MusicaService"
-            android:foregroundServiceType="mediaPlayback"
+        <receiver
+            android:name=".broadcast.ComunicacaoBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true"/>
+        <receiver
+            android:name=".broadcast.ReinicializacaoReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".broadcast.MeuBroadcastReceiver"
+            android:enabled="true"
             android:exported="false" />
+
         <service
-            android:name=".MinhaConexao"
+            android:name=".service.MusicaService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+        <service
+            android:name=".service.MinhaConexao"
             android:description="@string/description_my_service"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="shortService" />
         <service
-            android:name=".MeuServico"
+            android:name=".service.MeuServico"
             android:description="@string/description_my_service"
+            android:exported="false" />
+        <activity
+            android:name=".BroadcastActivity"
             android:exported="false" />
 
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".MusicaActivity"
+            android:name=".ComunicacaoBroadcastActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,6 +65,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MusicaActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

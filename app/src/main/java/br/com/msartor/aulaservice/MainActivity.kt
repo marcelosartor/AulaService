@@ -11,10 +11,10 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import br.com.msartor.aulaservice.databinding.ActivityMainBinding
+import br.com.msartor.aulaservice.service.MinhaConexao
 
 class MainActivity : AppCompatActivity(),ServiceConnection {
 
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(),ServiceConnection {
 
         val serviceConnection = this
         //val meuServico = Intent(this,MeuServico::class.java)
-        val minhaConexaoServico = Intent(this,MinhaConexao::class.java)
+        val minhaConexaoServico = Intent(this, MinhaConexao::class.java)
 
 
         binding.btnIniciarService.setOnClickListener {

@@ -1,4 +1,4 @@
-package br.com.msartor.aulaservice
+package br.com.msartor.aulaservice.service
 
 import android.app.Service
 import android.content.Intent

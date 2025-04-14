@@ -1,4 +1,4 @@
-package br.com.msartor.aulaservice
+package br.com.msartor.aulaservice.service
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -9,9 +9,9 @@ import android.graphics.BitmapFactory
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.IBinder
-import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
+import br.com.msartor.aulaservice.R
 import java.time.LocalDateTime
 import java.time.ZoneId
 

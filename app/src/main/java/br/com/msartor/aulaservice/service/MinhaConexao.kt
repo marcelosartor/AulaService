@@ -1,15 +1,14 @@
-package br.com.msartor.aulaservice
+package br.com.msartor.aulaservice.service
 
 import android.app.NotificationManager
 import android.app.Service
 import android.content.Intent
-import android.content.pm.ServiceInfo
 import android.graphics.BitmapFactory
 import android.os.Binder
-import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import br.com.msartor.aulaservice.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel

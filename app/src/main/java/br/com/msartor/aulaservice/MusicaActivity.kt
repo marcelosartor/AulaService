@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import br.com.msartor.aulaservice.databinding.ActivityMusicaBinding
+import br.com.msartor.aulaservice.service.MusicaService
 
 class MusicaActivity : AppCompatActivity() {
 
