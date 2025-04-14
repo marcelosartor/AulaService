@@ -9,7 +9,8 @@ class ComunicacaoBroadcastReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         if(intent.action == "br.com.msartor.aulaservice.ABRIR_ARQUIVO_PDF"){
-            Log.i("ComunicacaoBroadcastReceiver", "Abrindo arquivo PDF")
+            val fileName = intent.getStringExtra("ARQUIVO")
+            Log.i("ComunicacaoBroadcastReceiver", "Abrindo arquivo PDF $fileName")
         }
     }
 }
