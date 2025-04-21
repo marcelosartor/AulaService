@@ -1,11 +1,15 @@
 package br.com.msartor.aulaservice
 
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -19,6 +23,21 @@ class ComunicacaoBroadcastActivity : AppCompatActivity() {
     }
 
     private lateinit var comunicacaoBroadcastReceiver: ComunicacaoBroadcastReceiver
+
+    private val broadcastActivity = object : BroadcastReceiver(){
+        override fun onReceive(context: Context, intent: Intent) {
+            var message = "Cabo de Energia"
+            if (intent.action == Intent.ACTION_POWER_CONNECTED) {
+                message = "$message Conectado"
+                Toast.makeText(applicationContext,message, Toast.LENGTH_SHORT).show()
+                binding.textInformacao.text = message
+            }else{
+                message = "$message Desconectado"
+                Toast.makeText(applicationContext,message, Toast.LENGTH_SHORT).show()
+                binding.textInformacao.text = message
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,10 +61,18 @@ class ComunicacaoBroadcastActivity : AppCompatActivity() {
             }
         }
 
+        // Broadcast Activity
+        IntentFilter().apply {
+            addAction(Intent.ACTION_POWER_CONNECTED)
+            addAction(Intent.ACTION_POWER_DISCONNECTED)
+        }.also {
+             registerReceiver(broadcastActivity, it)
+        }
     }
 
     override fun onDestroy() {
         unregisterReceiver(comunicacaoBroadcastReceiver)
+        unregisterReceiver(broadcastActivity)
         super.onDestroy()
     }
 }
