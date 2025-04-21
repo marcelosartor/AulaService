@@ -19,9 +19,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AulaService">
         <receiver
+            android:name=".broadcast.BroadcastPriority03Receiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+        <receiver
+            android:name=".broadcast.BroadcastPriority02Receiver"
+            android:enabled="true"
+            android:exported="true" />
+        <receiver
+            android:name=".broadcast.BroadcastPriority01Receiver"
+            android:enabled="true"
+            android:exported="true" />
+
+
+        <receiver
             android:name=".broadcast.ComunicacaoBroadcastReceiver"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
         <receiver
             android:name=".broadcast.ReinicializacaoReceiver"
             android:enabled="true"
@@ -49,15 +63,19 @@
             android:name=".service.MeuServico"
             android:description="@string/description_my_service"
             android:exported="false" />
+
         <activity
             android:name=".BroadcastActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
         <activity
             android:name=".ComunicacaoBroadcastActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BroadcastOrdenadoActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

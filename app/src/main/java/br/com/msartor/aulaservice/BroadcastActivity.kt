@@ -18,6 +18,7 @@ class BroadcastActivity : AppCompatActivity() {
     }
     private lateinit var meuBroadcastReceiver: MeuBroadcastReceiver
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
